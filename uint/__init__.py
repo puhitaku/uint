@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import math
 import operator
 from dataclasses import dataclass
 from typing import Callable, List, Union
@@ -15,13 +16,32 @@ class Uint:
         self.mask = 2 ** bits - 1
         self._raw = value
 
-    def __repr__(self):
-        return f'<uint{self.bits}, value={self.raw}>'
+    @property
+    def literal(self):
+        binw = self.bits + 2
+        octw = math.ceil(self.bits / 3) + 2
+        hexw = math.ceil(self.bits / 4) + 2
+
+        class Literal:
+            bin = ("{raw:#0%db}" % binw).format(raw=self.raw)
+            oct = ("{raw:#0%do}" % octw).format(raw=self.raw)
+            dec = str(self.raw)
+            hex = ("{raw:#0%dx}" % hexw).format(raw=self.raw)
+        return Literal
 
     @property
-    def bin(self) -> str:
-        f = "{raw:0%db}" % self.bits
-        return f.format(raw=self.raw)
+    def wire(self):
+        binw = self.bits
+        octw = math.ceil(self.bits / 3)
+        hexw = math.ceil(self.bits / 4)
+        bits = str(self.bits)
+
+        class Wire:
+            bin = (bits + "'b{raw:0%db}" % binw).format(raw=self.raw)
+            oct = (bits + "'o{raw:0%do}" % octw).format(raw=self.raw)
+            dec = (bits + "'d{raw}").format(raw=self.raw)
+            hex = (bits + "'h{raw:0%dx}" % hexw).format(raw=self.raw)
+        return Wire
 
     def __str__(self) -> str:
         f = "{bits}'b{raw:0%db}" % self.bits
