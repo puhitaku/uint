@@ -1,7 +1,7 @@
 """DRAM registers' definition of i.MX28"""
 
 from functools import reduce
-from regbit import Register
+from uint import Register
 
 
 regs_range = [range(0, 8), range(16, 30), range(31, 59), range(66, 86), range(87, 95), range(162, 190)]
