@@ -522,6 +522,7 @@ regs["184"][2:0] = 'mr1_cs2_partial_array_self_refresh_coverage'
 regs["189"][31:16] = 'axi5_en_size_lt_width_instr'
 regs["189"][15:0] = 'axi4_en_size_lt_width_instr'
 
+"""
 # cast default value in U-Boot
 regs["17"].decode(0x00000100)
 regs["26"].decode(0x00010101)
@@ -615,12 +616,12 @@ regs["35"]["initaref"] = 2  # no. of auto-refresh command in initialization
 regs["36"]["tras_lockout"] = 1
 regs["36"]["fast_write"] = 0  # TODO: is it effective?
 
-regs["37"]["caslat_lin_gate"] = 7  # TODO: adjust
-regs["37"]["caslat_lin"] = 8  # TODO: adjust
-regs["37"]["caslat"] = 2
-regs["37"]["wrlat"] = 1
+regs["37"]["caslat_lin_gate"] = 8  # TODO: adjust
+regs["37"]["caslat_lin"] = 9  # TODO: adjust
+regs["37"]["caslat"] = 3
+regs["37"]["wrlat"] = 2
 
-regs["38"]["tdal"] = 4  # = (t_wr/t_ck) + (t_rp/t_ck)
+regs["38"]["tdal"] = 5  # = (t_wr/t_ck) + (t_rp/t_ck)
 regs["38"]["tcpd"] = 80  # TODO: adjust
 regs["38"]["tcke"] = 1
 
@@ -649,7 +650,7 @@ regs["44"]["trrd"] = 3
 regs["45"]["txsr"] = 23  # TODO: adjust
 regs["45"]["txsnr"] = 23  # TODO: adjust
 
-regs["67"]["dram_clk_enable"] = 0b0001
+#regs["67"]["dram_clk_enable"] = 0b0001
 
 # regs["83"]  # TODO: adjust, not effective for LPDDR1?
 
@@ -662,30 +663,91 @@ regs["175"]["tbst_int_interval"] = 2  # TODO: adjust
 regs["177"]["tccd"] = 2  # TODO: adjust
 
 regs["178"]["tckesr"] = 4
-
-regs["181"]["mr0_cs1_cas_latency"] = 0b010
-regs["181"]["mr0_cs1_burst_type"] = 0b0
-regs["181"]["mr0_cs1_burst_length"] = 0b010
 regs["181"]["mr0_cs0_cas_latency"] = 0b010
 regs["181"]["mr0_cs0_burst_type"] = 0b0
 regs["181"]["mr0_cs0_burst_length"] = 0b010
 
-regs["182"]["mr0_cs3_cas_latency"] = 0b010
-regs["182"]["mr0_cs3_burst_type"] = 0b0
-regs["182"]["mr0_cs3_burst_length"] = 0b010
-regs["182"]["mr0_cs2_cas_latency"] = 0b010
-regs["182"]["mr0_cs2_burst_type"] = 0b0
-regs["182"]["mr0_cs2_burst_length"] = 0b010
-
-regs["183"]["mr1_cs1_drive_strength"] = 0b000
-regs["183"]["mr1_cs1_partial_array_self_refresh_coverage"] = 0b000
 regs["183"]["mr1_cs0_drive_strength"] = 0b000
 regs["183"]["mr1_cs0_partial_array_self_refresh_coverage"] = 0b000
+"""
 
-regs["184"]["mr1_cs3_drive_strength"] = 0b000
-regs["184"]["mr1_cs3_partial_array_self_refresh_coverage"] = 0b000
-regs["184"]["mr1_cs2_drive_strength"] = 0b000
-regs["184"]["mr1_cs2_partial_array_self_refresh_coverage"] = 0b000
+regs["0"].decode(0x00000000)
+regs["16"].decode(0x00000000)
+regs["21"].decode(0x00000000)
+regs["22"].decode(0x00000000)
+regs["23"].decode(0x00000000)
+regs["24"].decode(0x00000000)
+regs["25"].decode(0x00000000)
+regs["26"].decode(0x00010101)
+regs["27"].decode(0x01010101)
+regs["28"].decode(0x000f0f01)
+regs["29"].decode(0x0f02010a)
+regs["31"].decode(0x00000101)
+regs["32"].decode(0x00000100)
+regs["33"].decode(0x00000100)
+regs["34"].decode(0x01000000)
+regs["35"].decode(0x00000002)
+regs["36"].decode(0x01010000)
+regs["37"].decode(0x08060301)
+regs["38"].decode(0x06000001)
+regs["39"].decode(0x0a000000)
+regs["40"].decode(0x02009c40)
+regs["41"].decode(0x0002030b)
+regs["42"].decode(0x0036a608)
+regs["43"].decode(0x03160305)
+regs["44"].decode(0x03030002)
+regs["45"].decode(0x001f001c)
+regs["48"].decode(0x00012100)
+regs["49"].decode(0xffff0303)
+regs["50"].decode(0x00012100)
+regs["51"].decode(0xffff0303)
+regs["52"].decode(0x00012100)
+regs["53"].decode(0xffff0303)
+regs["54"].decode(0x00012100)
+regs["55"].decode(0xffff0303)
+regs["56"].decode(0x00000003)
+regs["58"].decode(0x00000000)
+regs["66"].decode(0x00000305)
+regs["67"].decode(0x01000f02)
+regs["69"].decode(0x00000200)
+regs["70"].decode(0x00020007)
+regs["71"].decode(0xf3004a27)
+regs["72"].decode(0xf3004a27)
+regs["75"].decode(0x07000310)
+regs["76"].decode(0x07000310)
+regs["79"].decode(0x00800004)
+regs["80"].decode(0x00000000)
+regs["81"].decode(0x00000000)
+regs["82"].decode(0x01000000)
+regs["83"].decode(0x01020408)
+regs["84"].decode(0x08040201)
+regs["85"].decode(0x000f1133)
+regs["87"].decode(0x00001f08)
+regs["88"].decode(0x00001f08)
+regs["91"].decode(0x00001f01)
+regs["92"].decode(0x00001f01)
+regs["162"].decode(0x00000000)
+regs["163"].decode(0x00010301)
+regs["164"].decode(0x00000002)
+regs["171"].decode(0x01010000)
+regs["172"].decode(0x01000100)
+regs["173"].decode(0x03030000)
+regs["174"].decode(0x00020303)
+regs["175"].decode(0x01010202)
+regs["176"].decode(0x00000000)
+regs["177"].decode(0x01030101)
+regs["178"].decode(0x21002101)
+regs["179"].decode(0x00030500)
+regs["180"].decode(0x03050305)
+regs["181"].decode(0x00320032)
+regs["182"].decode(0x00320032)
+regs["183"].decode(0x00000000)
+regs["184"].decode(0x00000000)
+regs["185"].decode(0x00000000)
+regs["186"].decode(0x00000000)
+regs["187"].decode(0x00000000)
+regs["188"].decode(0x00000000)
+regs["189"].decode(0xffffffff)
 
 regsenc = []
 for i in range(190):
