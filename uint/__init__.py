@@ -44,8 +44,10 @@ class Uint:
         return Wire
 
     def __str__(self) -> str:
-        f = "{bits}'b{raw:0%db}" % self.bits
-        return f.format(bits=self.bits, raw=self.raw)
+        return f'<uint{self.bits}, value={self.raw}>'
+
+    def __repr__(self):
+        return self.__str__()
 
     @property
     def raw(self) -> int:
