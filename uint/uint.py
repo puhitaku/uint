@@ -58,7 +58,7 @@ class Uint:
             value = self.mask + value + 1
         self._raw = value & self.mask
 
-    def _calc(self, other: Union[Uint, int], op: Callable[[int, int], int]) -> Uint:
+    def _calc(self, other: Union[Uint, int], op: Callable[[int, int], int]) -> Union[Uint, bool]:
         if issubclass(type(other), type(self)):
             value = other.raw  # read raw via other (Uint, Int) property to affect sign
         elif isinstance(other, int):
@@ -67,6 +67,10 @@ class Uint:
             raise TypeError(f"unsupported operand type(s): 'Uint' and '{type(other)}'")
 
         value = op(self.raw, value)
+
+        if isinstance(value, bool):
+            return value
+
         if not self.signed and value < 0:
             value = self.mask - (-value) + 1
 
