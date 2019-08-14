@@ -123,6 +123,9 @@ class Uint:
     def __index__(self):
         return self.raw
 
+    def __int__(self):
+        return self.raw
+
     def __invert__(self):
         return self._calc_alone(operator.inv)
 
