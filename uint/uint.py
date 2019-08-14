@@ -142,7 +142,7 @@ class Uint:
         raise TypeError('matmul is unsupported')
 
     def __neg__(self):
-        raise TypeError('neg is unsupported as it is unsigned')
+        return self._calc_alone(lambda v: self.mask - self.raw + 1)
 
     def __or__(self, other):
         return self._calc(other, operator.or_)
