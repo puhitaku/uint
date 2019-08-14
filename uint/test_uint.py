@@ -215,4 +215,4 @@ def test_xor():
     i = 0x0a50
     assert (x ^ y).raw == 0x5a00
     assert (x ^ z).raw == 0x005a
-    assert (y ^ i).raw == 0x5a50
+    assert (y ^ i).raw == 0x5050
