@@ -71,9 +71,6 @@ class Uint:
         if isinstance(value, bool):
             return value
 
-        if not self.signed and value < 0:
-            value = self.mask - (-value) + 1
-
         newself = copy.deepcopy(self)
         newself.raw = value
         return newself
