@@ -105,8 +105,8 @@ class Uint:
     def __gt__(self, other):
         return self._calc(other, operator.gt)
 
-    def __truth__(self):
-        return operator.truth(self.raw)
+    def __bool__(self):
+        return bool(self.raw)
 
     def __abs__(self):
         return self._calc_alone(operator.abs)
