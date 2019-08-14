@@ -13,7 +13,7 @@ class Uint:
     def __init__(self, value: int, bits: int):
         self.bits = bits
         self.mask = 2 ** bits - 1
-        self._raw = value
+        self.raw = value  # may be twocomp'd in `raw` property setter
 
     @property
     def literal(self):
@@ -54,6 +54,8 @@ class Uint:
 
     @raw.setter
     def raw(self, value):
+        if self.signed and value < 0:
+            value = self.mask + value + 1
         self._raw = value & self.mask
 
     def _calc(self, other: Union[Uint, int], op: Callable[[int, int], int]) -> Uint:
