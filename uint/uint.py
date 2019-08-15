@@ -46,11 +46,25 @@ class Uint:
     def raw(self):
         return self._raw
 
+    """
+    For Uint, raw and native are identical:
+    Uint(0x90, 8).raw -> 144
+    Uint(0x90, 8).native -> 144 (0x90)
+
+    For Int, the're different:
+    Int(0x90, 8).raw -> -112
+    Int(0x90, 8).native -> 144 (0x90)
+    """
+
     @raw.setter
     def raw(self, value):
         if self.signed and value < 0:
             value = self.mask + value + 1
         self._raw = value & self.mask
+
+    @property
+    def native(self):
+        return self._raw
 
     def _calc(self, other: Union[Uint, int], op: Callable[[int, int], int]) -> Union[Uint, bool]:
         if issubclass(type(other), type(self)):
