@@ -42,14 +42,8 @@ class Uint:
             hex = (bits + "'h{raw:0%dx}" % hexw).format(raw=self.raw)
         return Wire
 
-    def __str__(self) -> str:
-        return f'<uint{self.bits}, value={self.raw}>'
-
-    def __repr__(self):
-        return self.__str__()
-
     @property
-    def raw(self) -> int:
+    def raw(self):
         return self._raw
 
     @raw.setter
@@ -79,6 +73,12 @@ class Uint:
         newself = copy.deepcopy(self)
         newself.raw = op(self.raw)
         return newself
+
+    def __str__(self) -> str:
+        return f'<uint{self.bits}, value={self.raw}>'
+
+    def __repr__(self):
+        return self.__str__()
 
     def __format__(self, fmt):
         fmt = '{v:%s}' % fmt
