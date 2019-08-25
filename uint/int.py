@@ -2,6 +2,7 @@ from __future__ import annotations
 import operator
 
 from uint import Uint
+from uint.util import twocomp
 
 
 class Int(Uint):
@@ -21,14 +22,14 @@ class Int(Uint):
     @raw.setter
     def raw(self, value):
         if self.is_twocomp(value):
-            self._raw = -self.twocomp(value & self.mask)
+            self._raw = -twocomp(value & self.mask, width=self.bits)
         else:
             self._raw = value & self.mask
 
     @property
     def native(self):
         if self._raw < 0:
-            return self.twocomp(self._raw)
+            return twocomp(self._raw, self.bits)
         else:
             return self._raw
 
@@ -37,11 +38,6 @@ class Int(Uint):
 
     def __neg__(self):
         return self._calc_alone(operator.inv) + 1
-
-    def twocomp(self, v):
-        if v < 0:
-            v = -v
-        return self.mask - v + 1
 
     def is_twocomp(self, v):
         return bool(v & (1 << (self.bits - 1)))
