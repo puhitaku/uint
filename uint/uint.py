@@ -67,7 +67,7 @@ class Uint:
         return self._raw
 
     def _calc(self, other: Union[Uint, int], op: Callable[[int, int], int]) -> Union[Uint, bool]:
-        if issubclass(type(other), type(self)):
+        if issubclass(type(other), type(self)) or issubclass(type(self), type(other)):
             value = other.raw  # read raw via other (Uint, Int) property to affect sign
         elif isinstance(other, int):
             value = other
