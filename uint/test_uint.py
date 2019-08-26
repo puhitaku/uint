@@ -38,6 +38,33 @@ def test_fmt_wire():
     assert u.wire.hex == f"32'h{0xDEADBEEF:08x}"
 
 
+def test_public_api():
+    """
+    Exposed functions are:
+     - raw -> int, returns unsigned number
+     - native -> int, same as `raw`
+     - literal.bin -> str, Python literal representation (binary)
+     - literal.oct -> str, Python literal representation (octal)
+     - literal.dec -> str, Python literal representation (decimal)
+     - literal.hex -> str, Python literal representation (hexadecimal)
+     - wire.bin -> str, Verilog wire representation (binary)
+     - wire.oct -> str, Verilog wire representation (octal)
+     - wire.dec -> str, Verilog wire representation (decimal)
+     - wire.hex -> str, Verilog wire representation (hexadecimal)
+    """
+    u = Uint(0x5a, 8)
+    assert u.raw == 0x5a
+    assert u.native == 0x5a
+    assert u.literal.bin == "0b01011010"
+    assert u.literal.oct == "0o132"
+    assert u.literal.dec == "90"
+    assert u.literal.hex == "0x5a"
+    assert u.wire.bin == "8'b01011010"
+    assert u.wire.oct == "8'o132"
+    assert u.wire.dec == "8'd90"
+    assert u.wire.hex == "8'h5a"
+
+
 def test_minus():
     u = Uint(0x01, 8)
     u = -u
