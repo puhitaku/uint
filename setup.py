@@ -31,5 +31,4 @@ setup(
     classifiers=__classifiers__,
     packages=find_packages(),
     license=__license__,
-    test_suite='tests',
     include_package_data=True)
