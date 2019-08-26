@@ -5,7 +5,7 @@ python:
   - 3.7
 
 install:
-  - pip install coveralls
+  - pip install coveralls pytest pytest-cov
 
 script:
   - pytest --cov=uint
