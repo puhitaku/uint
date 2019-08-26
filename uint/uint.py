@@ -22,10 +22,10 @@ class Uint:
         hexw = math.ceil(self.bits / 4) + 2
 
         class Literal:
-            bin = ("{raw:#0%db}" % binw).format(raw=self.raw)
-            oct = ("{raw:#0%do}" % octw).format(raw=self.raw)
+            bin = ("{raw:#0%db}" % binw).format(raw=self.native)
+            oct = ("{raw:#0%do}" % octw).format(raw=self.native)
             dec = str(self.raw)
-            hex = ("{raw:#0%dx}" % hexw).format(raw=self.raw)
+            hex = ("{raw:#0%dx}" % hexw).format(raw=self.native)
         return Literal
 
     @property
@@ -36,10 +36,10 @@ class Uint:
         bits = str(self.bits)
 
         class Wire:
-            bin = (bits + "'b{raw:0%db}" % binw).format(raw=self.raw)
-            oct = (bits + "'o{raw:0%do}" % octw).format(raw=self.raw)
-            dec = (bits + "'d{raw}").format(raw=self.raw)
-            hex = (bits + "'h{raw:0%dx}" % hexw).format(raw=self.raw)
+            bin = (bits + "'b{raw:0%db}" % binw).format(raw=self.native)
+            oct = (bits + "'o{raw:0%do}" % octw).format(raw=self.native)
+            dec = (bits + "'d{raw}").format(raw=self.native)
+            hex = (bits + "'h{raw:0%dx}" % hexw).format(raw=self.native)
         return Wire
 
     @property
