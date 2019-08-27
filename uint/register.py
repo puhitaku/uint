@@ -65,7 +65,7 @@ class Register:
         self._fields.append(field)
 
     def __len__(self):
-        return max(max(f.index.start, f.index.stop) for f in self._fields)
+        return max(f.index.start for f in self._fields) + 1
 
     def __repr__(self):
         return f'<register "{self.name}">'
