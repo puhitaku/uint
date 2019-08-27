@@ -522,232 +522,238 @@ regs["184"][2:0] = 'mr1_cs2_partial_array_self_refresh_coverage'
 regs["189"][31:16] = 'axi5_en_size_lt_width_instr'
 regs["189"][15:0] = 'axi4_en_size_lt_width_instr'
 
-"""
-# cast default value in U-Boot
-regs["17"].decode(0x00000100)
-regs["26"].decode(0x00010101)
-regs["27"].decode(0x01010101)
-regs["28"].decode(0x000f0f01)
-regs["29"].decode(0x0f02020a)
-regs["31"].decode(0x00010101)
-regs["32"].decode(0x00000100)
-regs["33"].decode(0x00000100)
-regs["35"].decode(0x00000002)
-regs["36"].decode(0x01010000)
-regs["37"].decode(0x07080403)
-regs["38"].decode(0x06005003)
-regs["39"].decode(0x0a0000c8)
-regs["40"].decode(0x02009c40)
-regs["41"].decode(0x0002030c)
-regs["42"].decode(0x0036a609)
-regs["43"].decode(0x031a0612)
-regs["44"].decode(0x02030202)
-regs["45"].decode(0x00c8001c)
-regs["48"].decode(0x00012100)
-regs["49"].decode(0xffff0303)
-regs["50"].decode(0x00012100)
-regs["51"].decode(0xffff0303)
-regs["52"].decode(0x00012100)
-regs["53"].decode(0xffff0303)
-regs["54"].decode(0x00012100)
-regs["55"].decode(0xffff0303)
-regs["56"].decode(0x00000003)
-regs["66"].decode(0x00000612)
-regs["67"].decode(0x01000f02)
-regs["68"].decode(0x06120612)
-regs["69"].decode(0x00000200)
-regs["70"].decode(0x00020007)
-regs["71"].decode(0xf4004a27)
-regs["72"].decode(0xf4004a27)
-regs["73"].decode(0xf4004a27)
-regs["74"].decode(0xf4004a27)
-regs["75"].decode(0x07000300)
-regs["76"].decode(0x07000300)
-regs["77"].decode(0x07400300)
-regs["78"].decode(0x07400300)
-regs["79"].decode(0x00000005)
-regs["82"].decode(0x01000000)
-regs["83"].decode(0x01020408)
-regs["84"].decode(0x08040201)
-regs["85"].decode(0x00001133)
-regs["87"].decode(0x00001f04)
-regs["88"].decode(0x00001f04)
-regs["89"].decode(0x00001f04)
-regs["90"].decode(0x00001f04)
-regs["91"].decode(0x00001f04)
-regs["92"].decode(0x00001f04)
-regs["93"].decode(0x00001f04)
-regs["94"].decode(0x00001f04)
-regs["162"].decode(0x00010000)
-regs["163"].decode(0x00030404)
-regs["164"].decode(0x00000003)
-regs["171"].decode(0x01010000)
-regs["172"].decode(0x01000000)
-regs["173"].decode(0x03030000)
-regs["174"].decode(0x00010303)
-regs["175"].decode(0x01020202)
-regs["177"].decode(0x02040303)
-regs["178"].decode(0x21002103)
-regs["179"].decode(0x00061200)
-regs["180"].decode(0x06120612)
-regs["181"].decode(0x04420442)
-regs["182"].decode(0x04420442)
-regs["183"].decode(0x00040004)
-regs["184"].decode(0x00040004)
-regs["189"].decode(0xffffffff)
 
-regs["29"]["cs_map"] = 0b0001  # CS mask
-regs["29"]["column_size"] = 2  # difference between 12 and actual width
-regs["29"]["addr_pins"] = 1
-regs["29"]["aprebit"] = 10  # auto precharge bit in address
+def decode_uboot_default():
+    regs["17"].decode(0x00000100)
+    regs["26"].decode(0x00010101)
+    regs["27"].decode(0x01010101)
+    regs["28"].decode(0x000f0f01)
+    regs["29"].decode(0x0f02020a)
+    regs["31"].decode(0x00010101)
+    regs["32"].decode(0x00000100)
+    regs["33"].decode(0x00000100)
+    regs["35"].decode(0x00000002)
+    regs["36"].decode(0x01010000)
+    regs["37"].decode(0x07080403)
+    regs["38"].decode(0x06005003)
+    regs["39"].decode(0x0a0000c8)
+    regs["40"].decode(0x02009c40)
+    regs["41"].decode(0x0002030c)
+    regs["42"].decode(0x0036a609)
+    regs["43"].decode(0x031a0612)
+    regs["44"].decode(0x02030202)
+    regs["45"].decode(0x00c8001c)
+    regs["48"].decode(0x00012100)
+    regs["49"].decode(0xffff0303)
+    regs["50"].decode(0x00012100)
+    regs["51"].decode(0xffff0303)
+    regs["52"].decode(0x00012100)
+    regs["53"].decode(0xffff0303)
+    regs["54"].decode(0x00012100)
+    regs["55"].decode(0xffff0303)
+    regs["56"].decode(0x00000003)
+    regs["66"].decode(0x00000612)
+    regs["67"].decode(0x01000f02)
+    regs["68"].decode(0x06120612)
+    regs["69"].decode(0x00000200)
+    regs["70"].decode(0x00020007)
+    regs["71"].decode(0xf4004a27)
+    regs["72"].decode(0xf4004a27)
+    regs["73"].decode(0xf4004a27)
+    regs["74"].decode(0xf4004a27)
+    regs["75"].decode(0x07000300)
+    regs["76"].decode(0x07000300)
+    regs["77"].decode(0x07400300)
+    regs["78"].decode(0x07400300)
+    regs["79"].decode(0x00000005)
+    regs["82"].decode(0x01000000)
+    regs["83"].decode(0x01020408)
+    regs["84"].decode(0x08040201)
+    regs["85"].decode(0x00001133)
+    regs["87"].decode(0x00001f04)
+    regs["88"].decode(0x00001f04)
+    regs["89"].decode(0x00001f04)
+    regs["90"].decode(0x00001f04)
+    regs["91"].decode(0x00001f04)
+    regs["92"].decode(0x00001f04)
+    regs["93"].decode(0x00001f04)
+    regs["94"].decode(0x00001f04)
+    regs["162"].decode(0x00010000)
+    regs["163"].decode(0x00030404)
+    regs["164"].decode(0x00000003)
+    regs["171"].decode(0x01010000)
+    regs["172"].decode(0x01000000)
+    regs["173"].decode(0x03030000)
+    regs["174"].decode(0x00010303)
+    regs["175"].decode(0x01020202)
+    regs["177"].decode(0x02040303)
+    regs["178"].decode(0x21002103)
+    regs["179"].decode(0x00061200)
+    regs["180"].decode(0x06120612)
+    regs["181"].decode(0x04420442)
+    regs["182"].decode(0x04420442)
+    regs["183"].decode(0x00040004)
+    regs["184"].decode(0x00040004)
+    regs["189"].decode(0xffffffff)
 
-regs["31"]["eight_bank_mode"] = 0
-regs["31"]["dqs_n_en"] = 0  # DQS is single-ended
 
-regs["32"]["reduc"] = 0  # TODO: is it effective?: half datapath
-regs["32"]["reg_dimm_enable"] = 0
+def customize_by_hand():
+    regs["29"]["cs_map"] = 0b0001  # CS mask
+    regs["29"]["column_size"] = 2  # difference between 12 and actual width
+    regs["29"]["addr_pins"] = 1
+    regs["29"]["aprebit"] = 10  # auto precharge bit in address
 
-regs["33"]["concurrentap"] = 1  # concurrent operation of different banks is supported
+    regs["31"]["eight_bank_mode"] = 0
+    regs["31"]["dqs_n_en"] = 0  # DQS is single-ended
 
-# regs["34"] TODO: interrupting commands is effective?
+    regs["32"]["reduc"] = 0  # TODO: is it effective?: half datapath
+    regs["32"]["reg_dimm_enable"] = 0
 
-regs["35"]["initaref"] = 2  # no. of auto-refresh command in initialization
+    regs["33"]["concurrentap"] = 1  # concurrent operation of different banks is supported
 
-regs["36"]["tras_lockout"] = 1
-regs["36"]["fast_write"] = 0  # TODO: is it effective?
+    # regs["34"] TODO: interrupting commands is effective?
 
-regs["37"]["caslat_lin_gate"] = 8  # TODO: adjust
-regs["37"]["caslat_lin"] = 9  # TODO: adjust
-regs["37"]["caslat"] = 3
-regs["37"]["wrlat"] = 2
+    regs["35"]["initaref"] = 2  # no. of auto-refresh command in initialization
 
-regs["38"]["tdal"] = 5  # = (t_wr/t_ck) + (t_rp/t_ck)
-regs["38"]["tcpd"] = 80  # TODO: adjust
-regs["38"]["tcke"] = 1
+    regs["36"]["tras_lockout"] = 1
+    regs["36"]["fast_write"] = 0  # TODO: is it effective?
 
-regs["39"]["tfaw"] = 10  # TODO: adjust, four active window delay
-regs["39"]["tdll"] = 200  # TODO: maybe unnecessary?
+    regs["37"]["caslat_lin_gate"] = 8  # TODO: adjust
+    regs["37"]["caslat_lin"] = 9  # TODO: adjust
+    regs["37"]["caslat"] = 3
+    regs["37"]["wrlat"] = 2
 
-regs["40"]["tmrd"] = 4
-regs["40"]["tinit"] = 40000
+    regs["38"]["tdal"] = 5  # = (t_wr/t_ck) + (t_rp/t_ck)
+    regs["38"]["tcpd"] = 80  # TODO: adjust
+    regs["38"]["tcke"] = 1
 
-regs["41"]["tpdex"] = 2
-regs["41"]["trcd_int"] = 2
-regs["41"]["trc"] = 12
+    regs["39"]["tfaw"] = 10  # TODO: adjust, four active window delay
+    regs["39"]["tdll"] = 200  # TODO: maybe unnecessary?
 
-regs["42"]["tras_max"] = 13990
-regs["42"]["tras_min"] = 9
+    regs["40"]["tmrd"] = 4
+    regs["40"]["tinit"] = 40000
 
-regs["43"]["trp"] = 4
-regs["43"]["trfc"] = 15  # TODO: adjust
-regs["43"]["tref"] = 3120  # TODO: adjust
+    regs["41"]["tpdex"] = 2
+    regs["41"]["trcd_int"] = 2
+    regs["41"]["trc"] = 12
 
-regs["44"]["twtr"] = 4  # TODO: adjust
-regs["44"]["twr_int"] = 3
-regs["44"]["trtp"] = 3  # TODO: inferred
-regs["44"]["trrd"] = 3
+    regs["42"]["tras_max"] = 13990
+    regs["42"]["tras_min"] = 9
 
-regs["45"]["txsr"] = 23  # TODO: adjust
-regs["45"]["txsnr"] = 23  # TODO: adjust
+    regs["43"]["trp"] = 4
+    regs["43"]["trfc"] = 15  # TODO: adjust
+    regs["43"]["tref"] = 3120  # TODO: adjust
 
-#regs["67"]["dram_clk_enable"] = 0b0001
+    regs["44"]["twtr"] = 4  # TODO: adjust
+    regs["44"]["twr_int"] = 3
+    regs["44"]["trtp"] = 3  # TODO: inferred
+    regs["44"]["trrd"] = 3
 
-# regs["83"]  # TODO: adjust, not effective for LPDDR1?
+    regs["45"]["txsr"] = 23  # TODO: adjust
+    regs["45"]["txsnr"] = 23  # TODO: adjust
 
-regs["85"]["pad_type"] = 0  # DDR1
+    # regs["67"]["dram_clk_enable"] = 0b0001
 
-regs["163"]["dram_class"] = 0b0001  # DDR1 with Mobile
+    # regs["83"]  # TODO: adjust, not effective for LPDDR1?
 
-regs["175"]["tbst_int_interval"] = 2  # TODO: adjust
+    regs["85"]["pad_type"] = 0  # DDR1
 
-regs["177"]["tccd"] = 2  # TODO: adjust
+    regs["163"]["dram_class"] = 0b0001  # DDR1 with Mobile
 
-regs["178"]["tckesr"] = 4
-regs["181"]["mr0_cs0_cas_latency"] = 0b010
-regs["181"]["mr0_cs0_burst_type"] = 0b0
-regs["181"]["mr0_cs0_burst_length"] = 0b010
+    regs["175"]["tbst_int_interval"] = 2  # TODO: adjust
 
-regs["183"]["mr1_cs0_drive_strength"] = 0b000
-regs["183"]["mr1_cs0_partial_array_self_refresh_coverage"] = 0b000
-"""
+    regs["177"]["tccd"] = 2  # TODO: adjust
 
-regs["0"].decode(0x00000000)
-regs["16"].decode(0x00000000)
-regs["21"].decode(0x00000000)
-regs["22"].decode(0x00000000)
-regs["23"].decode(0x00000000)
-regs["24"].decode(0x00000000)
-regs["25"].decode(0x00000000)
-regs["26"].decode(0x00010101)
-regs["27"].decode(0x01010101)
-regs["28"].decode(0x000f0f01)
-regs["29"].decode(0x0f02010a)
-regs["31"].decode(0x00000101)
-regs["32"].decode(0x00000100)
-regs["33"].decode(0x00000100)
-regs["34"].decode(0x01000000)
-regs["35"].decode(0x00000002)
-regs["36"].decode(0x01010000)
-regs["37"].decode(0x08060301)
-regs["38"].decode(0x06000001)
-regs["39"].decode(0x0a000000)
-regs["40"].decode(0x02009c40)
-regs["41"].decode(0x0002030b)
-regs["42"].decode(0x0036a608)
-regs["43"].decode(0x03160305)
-regs["44"].decode(0x03030002)
-regs["45"].decode(0x001f001c)
-regs["48"].decode(0x00012100)
-regs["49"].decode(0xffff0303)
-regs["50"].decode(0x00012100)
-regs["51"].decode(0xffff0303)
-regs["52"].decode(0x00012100)
-regs["53"].decode(0xffff0303)
-regs["54"].decode(0x00012100)
-regs["55"].decode(0xffff0303)
-regs["56"].decode(0x00000003)
-regs["58"].decode(0x00000000)
-regs["66"].decode(0x00000305)
-regs["67"].decode(0x01000f02)
-regs["69"].decode(0x00000200)
-regs["70"].decode(0x00020007)
-regs["71"].decode(0xf3004a27)
-regs["72"].decode(0xf3004a27)
-regs["75"].decode(0x07000310)
-regs["76"].decode(0x07000310)
-regs["79"].decode(0x00800004)
-regs["80"].decode(0x00000000)
-regs["81"].decode(0x00000000)
-regs["82"].decode(0x01000000)
-regs["83"].decode(0x01020408)
-regs["84"].decode(0x08040201)
-regs["85"].decode(0x000f1133)
-regs["87"].decode(0x00001f08)
-regs["88"].decode(0x00001f08)
-regs["91"].decode(0x00001f01)
-regs["92"].decode(0x00001f01)
-regs["162"].decode(0x00000000)
-regs["163"].decode(0x00010301)
-regs["164"].decode(0x00000002)
-regs["171"].decode(0x01010000)
-regs["172"].decode(0x01000100)
-regs["173"].decode(0x03030000)
-regs["174"].decode(0x00020303)
-regs["175"].decode(0x01010202)
-regs["176"].decode(0x00000000)
-regs["177"].decode(0x01030101)
-regs["178"].decode(0x21002101)
-regs["179"].decode(0x00030500)
-regs["180"].decode(0x03050305)
-regs["181"].decode(0x00320032)
-regs["182"].decode(0x00320032)
-regs["183"].decode(0x00000000)
-regs["184"].decode(0x00000000)
-regs["185"].decode(0x00000000)
-regs["186"].decode(0x00000000)
-regs["187"].decode(0x00000000)
-regs["188"].decode(0x00000000)
-regs["189"].decode(0xffffffff)
+    regs["178"]["tckesr"] = 4
+    regs["181"]["mr0_cs0_cas_latency"] = 0b010
+    regs["181"]["mr0_cs0_burst_type"] = 0b0
+    regs["181"]["mr0_cs0_burst_length"] = 0b010
+
+    regs["183"]["mr1_cs0_drive_strength"] = 0b000
+    regs["183"]["mr1_cs0_partial_array_self_refresh_coverage"] = 0b000
+
+
+def decode_mddr_configs():
+    regs["0"].decode(0x00000000)
+    regs["16"].decode(0x00000000)
+    regs["21"].decode(0x00000000)
+    regs["22"].decode(0x00000000)
+    regs["23"].decode(0x00000000)
+    regs["24"].decode(0x00000000)
+    regs["25"].decode(0x00000000)
+    regs["26"].decode(0x00010101)
+    regs["27"].decode(0x01010101)
+    regs["28"].decode(0x000f0f01)
+    regs["29"].decode(0x0f02010a)
+    regs["31"].decode(0x00000101)
+    regs["32"].decode(0x00000100)
+    regs["33"].decode(0x00000100)
+    regs["34"].decode(0x01000000)
+    regs["35"].decode(0x00000002)
+    regs["36"].decode(0x01010000)
+    regs["37"].decode(0x08060301)
+    regs["38"].decode(0x06000001)
+    regs["39"].decode(0x0a000000)
+    regs["40"].decode(0x02009c40)
+    regs["41"].decode(0x0002030b)
+    regs["42"].decode(0x0036a608)
+    regs["43"].decode(0x03160305)
+    regs["44"].decode(0x03030002)
+    regs["45"].decode(0x001f001c)
+    regs["48"].decode(0x00012100)
+    regs["49"].decode(0xffff0303)
+    regs["50"].decode(0x00012100)
+    regs["51"].decode(0xffff0303)
+    regs["52"].decode(0x00012100)
+    regs["53"].decode(0xffff0303)
+    regs["54"].decode(0x00012100)
+    regs["55"].decode(0xffff0303)
+    regs["56"].decode(0x00000003)
+    regs["58"].decode(0x00000000)
+    regs["66"].decode(0x00000305)
+    regs["67"].decode(0x01000f02)
+    regs["69"].decode(0x00000200)
+    regs["70"].decode(0x00020007)
+    regs["71"].decode(0xf3004a27)
+    regs["72"].decode(0xf3004a27)
+    regs["75"].decode(0x07000310)
+    regs["76"].decode(0x07000310)
+    regs["79"].decode(0x00800004)
+    regs["80"].decode(0x00000000)
+    regs["81"].decode(0x00000000)
+    regs["82"].decode(0x01000000)
+    regs["83"].decode(0x01020408)
+    regs["84"].decode(0x08040201)
+    regs["85"].decode(0x000f1133)
+    regs["87"].decode(0x00001f08)
+    regs["88"].decode(0x00001f08)
+    regs["91"].decode(0x00001f01)
+    regs["92"].decode(0x00001f01)
+    regs["162"].decode(0x00000000)
+    regs["163"].decode(0x00010301)
+    regs["164"].decode(0x00000002)
+    regs["171"].decode(0x01010000)
+    regs["172"].decode(0x01000100)
+    regs["173"].decode(0x03030000)
+    regs["174"].decode(0x00020303)
+    regs["175"].decode(0x01010202)
+    regs["176"].decode(0x00000000)
+    regs["177"].decode(0x01030101)
+    regs["178"].decode(0x21002101)
+    regs["179"].decode(0x00030500)
+    regs["180"].decode(0x03050305)
+    regs["181"].decode(0x00320032)
+    regs["182"].decode(0x00320032)
+    regs["183"].decode(0x00000000)
+    regs["184"].decode(0x00000000)
+    regs["185"].decode(0x00000000)
+    regs["186"].decode(0x00000000)
+    regs["187"].decode(0x00000000)
+    regs["188"].decode(0x00000000)
+    regs["189"].decode(0xffffffff)
+
+
+decode_mddr_configs()
 
 regsenc = []
 for i in range(190):
