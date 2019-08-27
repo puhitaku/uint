@@ -9,6 +9,12 @@ def test_and():
     assert (y & x).native == 0x805a
 
 
+def test_rshift():
+    p, m = Int(0x7f, 8), Int(0x8f, 8)
+    assert (p >> 2).native == 0x1f
+    assert (m >> 2).native == 0xe3
+
+
 def test_neg():
     x = Int(0x01, 8)
     assert x.raw == 1

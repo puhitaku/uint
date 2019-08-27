@@ -2,7 +2,7 @@ from __future__ import annotations
 import operator
 
 from uint import Uint
-from uint.util import twocomp
+from uint.util import twocomp, generate_bitmask
 
 
 class Int(Uint):
@@ -38,6 +38,14 @@ class Int(Uint):
 
     def __neg__(self):
         return self._calc_alone(operator.inv) + 1
+
+    def __rshift__(self, shift):
+        def rshift(v):
+            if self.is_twocomp(v):
+                return generate_bitmask(self.bits) & (v >> shift)
+            else:
+                return v >> shift
+        return self._calc_alone(rshift)
 
     def is_twocomp(self, v):
         return bool(v & (1 << (self.bits - 1)))
