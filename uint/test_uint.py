@@ -65,6 +65,14 @@ def test_public_api():
     assert u.wire.hex == "8'h5a"
 
 
+def test_assign():
+    u = Uint(0, 8)
+    u.raw = 0xff
+    assert u.raw == 0xff
+    u.raw = -1
+    assert u.raw == 0xff
+
+
 def test_minus():
     u = Uint(0x01, 8)
     u = -u
@@ -243,3 +251,9 @@ def test_xor():
     assert (x ^ y).raw == 0x5a00
     assert (x ^ z).raw == 0x005a
     assert (y ^ i).raw == 0x5050
+
+
+def test_misc_magics():
+    u = Uint(0xff, 8)
+    assert str(u) == '<uint8, value=255>'
+    assert f'{u:08b}' == '11111111'
