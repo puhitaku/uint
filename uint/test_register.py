@@ -30,6 +30,9 @@ def test_detect_overlap():
     with raises(Register.OverlappedRange):
         reg[15:7] = 'f2'
 
+    with raises(Register.OverlappedRange):
+        reg[5] = 'f2'
+
 
 def test_overlap():
     reg = Register('reg')
@@ -72,3 +75,12 @@ def test_decode():
     assert reg['twobit'].value == 0b10
     assert reg['foo'].value == 0b0
     assert reg['byte'].value == 0b00110101
+
+
+def test_magics():
+    reg = Register('reg')
+    reg[15:8] = 'f1'
+    reg[7:0] = 'f2'
+
+    assert len(reg) == 16
+    assert repr(reg) == '<register "reg">'
