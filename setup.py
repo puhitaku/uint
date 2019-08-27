@@ -2,12 +2,12 @@ from pathlib import Path
 from setuptools import setup, find_packages
 
 
-__version__ = '0.0.1'
+__version__ = '0.1.0'
 __author__ = 'Takumi Sueda'
 __author_email__ = 'puhitaku@gmail.com'
 __license__ = 'MIT License'
 __classifiers__ = [
-    'Development Status :: 3 - Alpha',
+    'Development Status :: 4 - Beta',
     'Environment :: Console',
     'Intended Audience :: Developers',
     'License :: OSI Approved :: MIT License',
