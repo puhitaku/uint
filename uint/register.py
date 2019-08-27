@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import List
 
 from uint import Uint
+from uint.util import generate_bitmask
 
 
 @dataclass
@@ -12,16 +13,15 @@ class Field:
 
 
 class Register:
-    @dataclass
-    class _RegisterFieldAccessor:
-        _f: Field
+    name: str = None
+    _fields: List[Field] = None
 
-        def __setitem__(self, index, value):
-            self._f.value = value
+    class OverlappedRange(Exception):
+        pass
 
     def __init__(self, register_name):
         self.name = register_name
-        self.fields: List[Field] = []
+        self._fields = []
 
     def __getitem__(self, field_name):
         f = self._get_field(field_name)
@@ -42,9 +42,16 @@ class Register:
 
         # pattern 2: defining new field
         if isinstance(index, slice):
-            pass
+            f = self._check_overlap(index)
+            if f is not None:
+                raise self.OverlappedRange(
+                    f'[{index.start}:{index.stop}] overlaps to {f.name}[{f.index.start}:{f.index.stop}].')
         elif isinstance(index, int):
             index = slice(index, index)
+            f = self._check_overlap(index)
+            if f is not None:
+                raise self.OverlappedRange(
+                    f'[{index.start}:{index.stop}] overlaps to {f.name}[{f.index.start}:{f.index.stop}].')
         else:
             raise ValueError(f'Invalid index type.')
 
@@ -55,23 +62,35 @@ class Register:
 
         leftmost, rightmost = max(index.start, index.stop), min(index.start, index.stop)
         field = Field(value, slice(leftmost, rightmost), Uint(0, leftmost - rightmost + 1))
-        self.fields.append(field)
+        self._fields.append(field)
 
     def __len__(self):
-        return max(max(f.index.start, f.index.stop) for f in self.fields)
+        return max(max(f.index.start, f.index.stop) for f in self._fields)
 
     def __repr__(self):
         return f'<register "{self.name}">'
 
+    def _check_overlap(self, sl):
+        for f in self._fields:
+            if f.index.start >= sl.start >= f.index.stop:
+                return f
+            elif f.index.start >= sl.stop >= f.index.stop:
+                return f
+        return None
+
     def _get_field(self, field_name):
-        for f in self.fields:
+        for f in self._fields:
             if f.name == field_name:
                 return f
         return None
 
+    @property
+    def fields(self):
+        return self._fields
+
     def encode(self):
         acc = 0
-        for f in self.fields:
+        for f in self._fields:
             shifted = f.value.raw << f.index.stop
             acc |= shifted
         return acc
@@ -79,9 +98,9 @@ class Register:
     def decode(self, raw):
         # idx: 8 7 6 5 4 3 2 1 0
         # sli: x x x x 4 x x 1 x
-        for f in self.fields:
+        for f in self._fields:
             width = f.index.start - f.index.stop + 1
             cut = raw >> f.index.stop
-            cut &= int('1' * width, 2)
+            cut &= generate_bitmask(width)
             f.value = Uint(cut, width)
 
