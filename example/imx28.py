@@ -181,7 +181,7 @@ regs["53"][2:0] = 'axi2_r_priority'
 # hw_dram_ctl54
 regs["54"][16] = 'axi3_bdw_ovflow'
 regs["54"][14:8] = 'axi3_bdw'
-regs["52"][1:0] = 'axi3_fifo_type_reg'
+regs["54"][1:0] = 'axi3_fifo_type_reg'
 
 # hw_dram_ctl55
 regs["55"][31:16] = 'axi3_en_size_lt_width_instr'
