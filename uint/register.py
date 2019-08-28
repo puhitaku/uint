@@ -35,7 +35,7 @@ class Register:
         if isinstance(index, str):
             f = self._get_field(index)
             if f:
-                f.value.raw = value
+                f.value.assign(value)
                 return
             else:
                 raise ValueError(f'Field "{index}" is not defined.')
@@ -103,4 +103,3 @@ class Register:
             cut = raw >> f.index.stop
             cut &= generate_bitmask(width)
             f.value = Uint(cut, width)
-

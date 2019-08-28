@@ -67,9 +67,9 @@ def test_public_api():
 
 def test_assign():
     u = Uint(0, 8)
-    u.raw = 0xff
+    u.assign(0xff)
     assert u.raw == 0xff
-    u.raw = -1
+    u.assign(-1)
     assert u.raw == 0xff
 
 

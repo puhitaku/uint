@@ -1,5 +1,4 @@
 from typing import Union, NewType, Optional
-from uint import Uint
 
 Fixed = NewType('RichInt', Union['Uint', 'Int'])
 
@@ -8,8 +7,8 @@ def generate_bitmask(width: int) -> int:
     return (1 << width) - 1
 
 
-def twocomp(v: Union[Fixed, int], width: Optional[int] = None) -> Union[Fixed, int]:
-    if issubclass(type(v), Uint):
+def twocomp(v, width: Optional[int] = None):
+    if hasattr(v, 'native'):  # Uint or Int
         return (-v).native
     elif isinstance(v, int):
         if width is None:
@@ -21,6 +20,5 @@ def twocomp(v: Union[Fixed, int], width: Optional[int] = None) -> Union[Fixed, i
         raise TypeError(f"cannot calculate two's complimentary of type {type(v)}")
 
 
-
-
-
+def is_twocomp(v, bits):
+    return bool(v & (1 << (bits - 1)))
